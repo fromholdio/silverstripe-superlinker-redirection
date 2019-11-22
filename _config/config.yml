@@ -1,0 +1,5 @@
+---
+Name: fromholdio-superlinker-redirection
+---
+SilverStripe\CMS\Model\RedirectorPage:
+  hide_ancestor: SilverStripe\CMS\Model\RedirectorPage

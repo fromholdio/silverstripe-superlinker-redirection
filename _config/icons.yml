@@ -1,0 +1,8 @@
+---
+Name: fromholdio-superlinker-redirection-icons
+Only:
+  moduleexists: fromholdio/silverstripe-page-icons
+---
+Fromholdio\SuperLinkerRedirection\Pages\RedirectionPage:
+  icon: 'fromholdio/silverstripe-page-icons: client/icons/redirect.svg'
+  icon_class: false
