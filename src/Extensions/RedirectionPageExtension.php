@@ -30,7 +30,7 @@ class RedirectionPageExtension extends SiteTreeExtension
     public function getRedirectionLink()
     {
         $target = $this->getOwner()->RedirectionTarget();
-        if (!$target || !$target->exists()) {
+        if (!$target || !$target->exists() || !$target->HasTarget()) {
             return null;
         }
         return $target->Link();
@@ -39,7 +39,7 @@ class RedirectionPageExtension extends SiteTreeExtension
     public function getRedirectionAbsoluteLink()
     {
         $target = $this->getOwner()->RedirectionTarget();
-        if (!$target || !$target->exists()) {
+        if (!$target || !$target->exists() || !$target->HasTarget()) {
             return null;
         }
         return $target->AbsoluteLink();
