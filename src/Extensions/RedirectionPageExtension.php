@@ -23,6 +23,10 @@ class RedirectionPageExtension extends SiteTreeExtension
         'RedirectionTarget'
     ];
 
+    private static $cascade_duplicates = [
+        'RedirectionTarget'
+    ];
+
     private static $field_labels = [
         'RedirectionTarget' => 'Target'
     ];
