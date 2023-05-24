@@ -4,7 +4,7 @@ Replace for OOTB Silverstripe Redirector Page, using a SuperLink target to selec
 
 ## Requirements
 
-* [silverstripe-framework](https://github.com/silverstripe/silverstripe-framework) ^4
+* [silverstripe-framework](https://github.com/silverstripe/silverstripe-framework) ^4 or ^5
 
 ## Installation
 
