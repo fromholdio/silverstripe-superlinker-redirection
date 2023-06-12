@@ -15,7 +15,7 @@
     "require": {
         "silverstripe/cms": "~5.0",
         "fromholdio/silverstripe-superlinker": "^2.2.1",
-        "fromholdio/silverstripe-relativeurlfield": "^1.0.0",
+        "fromholdio/silverstripe-relativeurlfield": "dev-master",
         "fromholdio/silverstripe-hidden-pages": "^1.1.0"
     },
     "autoload": {
