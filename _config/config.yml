@@ -1,5 +1,28 @@
 ---
 Name: fromholdio-superlinker-redirection
 ---
+
 SilverStripe\CMS\Model\RedirectorPage:
   hide_ancestor: SilverStripe\CMS\Model\RedirectorPage
+  extensions:
+    fioHiddenPage: Fromholdio\HiddenPages\Extensions\HiddenPageExtension
+
+#SilverStripe\CMS\Model\SiteTree:
+#  extensions:
+#    - Fromholdio\SuperLinkerRedirection\Extensions\SiteTreeRedirectionExtension
+
+SilverStripe\Control\RequestHandler:
+  extensions:
+    - Fromholdio\SuperLinkerRedirection\Extensions\RedirectionHandler
+
+SilverStripe\CMS\Controllers\ContentController:
+  extensions:
+    - Fromholdio\SuperLinkerRedirection\Extensions\RedirectionHandler
+
+SilverStripe\CMS\Controllers\ModelAsController:
+  extensions:
+    - Fromholdio\SuperLinkerRedirection\Extensions\RedirectionHandler
+
+SilverStripe\Assets\Flysystem\FlysystemAssetStore:
+  extensions:
+    - Fromholdio\SuperLinkerRedirection\Extensions\AssetRedirectionHandler

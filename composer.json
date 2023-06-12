@@ -13,10 +13,10 @@
         "homepage": "https://fromhold.io"
     }],
     "require": {
-        "silverstripe/cms": "~4.0 || ~5.0",
-        "fromholdio/silverstripe-superlinker": "^2.1.0",
-        "fromholdio/silverstripe-superlinker-targets": "^2.0.1",
-        "fromholdio/silverstripe-minigridfield": "^1.0.3"
+        "silverstripe/cms": "~5.0",
+        "fromholdio/silverstripe-superlinker": "^2.2.1",
+        "fromholdio/silverstripe-relativeurlfield": "^1.0.0",
+        "fromholdio/silverstripe-hidden-pages": "^1.1.0"
     },
     "autoload": {
         "psr-4": {
