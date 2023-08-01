@@ -4,6 +4,7 @@ namespace Fromholdio\SuperLinkerRedirection\Model;
 
 use Fromholdio\RelativeURLField\Forms\RelativeURLField;
 use Fromholdio\SuperLinker\Model\SuperLink;
+use Fromholdio\SuperLinkerRedirection\Admin\RedirectionSuperLinksAdmin;
 use Fromholdio\SuperLinkerRedirection\Pages\RedirectionPage;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
@@ -190,5 +191,15 @@ class RedirectionSuperLink extends SuperLink
         $fields->insertAfter($fieldPrefix . 'RedirectionResponseCode', $fromURLField);
 
         return $fields;
+    }
+
+    public function canDelete($member = null)
+    {
+        if ($this->isConfiguredByRedirectionPage()) {
+            if (Controller::curr() instanceof RedirectionSuperLinksAdmin) {
+                return false;
+            }
+        }
+        return parent::canDelete($member);
     }
 }
