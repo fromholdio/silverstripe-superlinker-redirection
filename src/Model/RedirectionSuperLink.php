@@ -47,7 +47,8 @@ class RedirectionSuperLink extends SuperLink
 
     private static $field_labels = [
         'RedirectionFromRelativeURL' => 'Origin URL',
-        'RedirectionResponseCode' => 'Redirect type'
+        'RedirectionResponseCode' => 'Redirect type',
+        'LinkType' => 'Destination type'
     ];
 
     private static $settings = [
