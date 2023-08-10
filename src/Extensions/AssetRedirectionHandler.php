@@ -40,8 +40,11 @@ class AssetRedirectionHandler extends Extension
         $url = $request->getURL(true);
         $urlPath = Director::makeRelative($url);
 
+        $filter = ['RedirectionFromRelativeURL' => $urlPath];
+        $this->getOwner()->invokeWithExtensions('updateRedirectionsFilter', $filter, $urlPath);
+
         /** @var ?RedirectionSuperLink $redirect */
-        $redirect = RedirectionSuperLink::get()->find('RedirectionFromRelativeURL', $urlPath);
+        $redirect = RedirectionSuperLink::get()->filter($filter)->first();
         if (!empty($redirect))
         {
             $response = HTTPResponse::create()

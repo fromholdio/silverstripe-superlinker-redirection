@@ -12,6 +12,7 @@ use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\OptionsetField;
+use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 
@@ -105,7 +106,7 @@ class RedirectionSuperLink extends SuperLink
         return $this->isConfiguredByRedirectionPage()
             ? ltrim($this->getComponent('RedirectionPage')?->regularAbsoluteLink(), '/')
             : Controller::join_links(
-                Director::absoluteBaseURL(),
+                $this->getBaseAbsoluteURL(),
                 $this->getField('RedirectionFromRelativeURL')
             );
     }
@@ -153,26 +154,24 @@ class RedirectionSuperLink extends SuperLink
         return array_filter($codes);
     }
 
+    public function getBaseAbsoluteURL(): ?string
+    {
+        $url = Director::absoluteBaseURL();
+        $this->extend('updateBaseAbsoluteURL', $url);
+        return $url;
+    }
+
     public function getCMSLinkFields(string $fieldPrefix = ''): FieldList
     {
-        $fields = parent::getCMSLinkFields($fieldPrefix);
-
         if (!$this->isInDB() && !empty($this->getField('SiteTreeID'))) {
             $this->setField('LinkType', 'sitetree');
         }
-
-        $codeField = OptionsetField::create(
-            $fieldPrefix . 'RedirectionResponseCode',
-            $this->fieldLabel('RedirectionResponseCode'),
-            $this->getAvailableResponseCodes(),
-            $this->getDefaultResponseCode()
-        );
-        $fields->unshift($codeField);
 
         $fromURLField = RelativeURLField::create(
             $fieldPrefix . 'RedirectionFromRelativeURL',
             $this->fieldLabel('RedirectionFromRelativeURL')
         );
+
         if ($this->isConfiguredByRedirectionPage())
         {
             $fromURLField->setBaseURL($this->getOriginAbsoluteURL());
@@ -187,9 +186,46 @@ class RedirectionSuperLink extends SuperLink
                 LiteralField::create($fieldPrefix . 'RedirectionPageMessage', $message)
             );
             $messageField->setName($fieldPrefix . 'RedirectionPageMessageGroup');
-            $fields->insertAfter($fieldPrefix . 'RedirectionResponseCode', $messageField);
+
+            $codeField = ReadonlyField::create(
+                $fieldPrefix . 'RedirectionResponseCodeReadOnly',
+                $this->fieldLabel('RedirectionResponseCode'),
+                $this->getResponseCodeLabel()
+            );
+
+            $fields = FieldList::create(
+                $codeField,
+                $fromURLField,
+                $messageField
+            );
+
+            $url = $this->getAbsoluteURL();
+            if (!empty($url)) {
+                $toURLField = RelativeURLField::create(
+                    $fieldPrefix . 'DestinationURL',
+                    $this->fieldLabel('DestinationURL')
+                );
+                $toURLField->setBaseURL($url);
+                $toURLField->setReadonly(true);
+                $fields->push($toURLField);
+            }
+
+            $this->extend('updateCMSLinkFields', $fields, $fieldPrefix);
         }
-        $fields->insertAfter($fieldPrefix . 'RedirectionResponseCode', $fromURLField);
+        else {
+            $fields = parent::getCMSLinkFields($fieldPrefix);
+
+            $codeField = OptionsetField::create(
+                $fieldPrefix . 'RedirectionResponseCode',
+                $this->fieldLabel('RedirectionResponseCode'),
+                $this->getAvailableResponseCodes(),
+                $this->getDefaultResponseCode()
+            );
+            $fields->unshift($codeField);
+
+            $fromURLField->setBaseURL($this->getBaseAbsoluteURL());
+            $fields->insertAfter($fieldPrefix . 'RedirectionResponseCode', $fromURLField);
+        }
 
         return $fields;
     }
