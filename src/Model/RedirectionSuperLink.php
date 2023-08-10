@@ -63,9 +63,6 @@ class RedirectionSuperLink extends SuperLink
         'phone' => null,
         'nolink' => null,
         'globalanchor' => null,
-        'sitetree' => [
-            'allow_anchor' => false
-        ],
         'file' => [
             'use_upload_field' => true,
             'allow_uploads' => true,
