@@ -6,6 +6,7 @@ use Fromholdio\RelativeURLField\Forms\RelativeURLField;
 use Fromholdio\SuperLinker\Model\SuperLink;
 use Fromholdio\SuperLinkerRedirection\Admin\RedirectionSuperLinksAdmin;
 use Fromholdio\SuperLinkerRedirection\Pages\RedirectionPage;
+use SilverStripe\CMS\Controllers\CMSPageEditController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
 use SilverStripe\Forms\FieldGroup;
@@ -158,6 +159,15 @@ class RedirectionSuperLink extends SuperLink
         return $url;
     }
 
+    public function isCMSFieldsReadonly(): bool
+    {
+        $curr = Controller::curr();
+        $isReadonly = $this->isConfiguredByRedirectionPage()
+            && ($curr instanceof CMSPageEditController);
+        $this->extend('updateIsCMSFieldsReadonly', $isReadonly);
+        return $isReadonly;
+    }
+
     public function getCMSLinkFields(string $fieldPrefix = ''): FieldList
     {
         if (!$this->isInDB() && !empty($this->getField('SiteTreeID'))) {
@@ -169,7 +179,7 @@ class RedirectionSuperLink extends SuperLink
             $this->fieldLabel('RedirectionFromRelativeURL')
         );
 
-        if ($this->isConfiguredByRedirectionPage())
+        if ($this->isCMSFieldsReadonly())
         {
             $fromURLField->setBaseURL($this->getOriginAbsoluteURL());
             $fromURLField->setReadonly(true);
