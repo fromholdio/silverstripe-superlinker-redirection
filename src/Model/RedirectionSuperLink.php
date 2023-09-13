@@ -163,7 +163,7 @@ class RedirectionSuperLink extends SuperLink
     {
         $curr = Controller::curr();
         $isReadonly = $this->isConfiguredByRedirectionPage()
-            && ($curr instanceof CMSPageEditController);
+            && !($curr instanceof CMSPageEditController);
         $this->extend('updateIsCMSFieldsReadonly', $isReadonly);
         return $isReadonly;
     }
