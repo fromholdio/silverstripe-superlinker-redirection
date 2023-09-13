@@ -84,6 +84,7 @@ class RedirectionPage extends Page
     public function getCMSRedirectionFields(): FieldList
     {
         $fieldPrefix = 'RedirectionSuperLink' . HasOneEdit::FIELD_SEPARATOR;
+        /** @var FieldList $fields */
         $fields = $this->getComponent('RedirectionSuperLink')->getCMSLinkFields($fieldPrefix);
 
         $fields->removeByName($fieldPrefix . 'RedirectionFromRelativeURL');
