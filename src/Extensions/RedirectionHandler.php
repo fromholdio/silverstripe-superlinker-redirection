@@ -21,7 +21,7 @@ class RedirectionHandler extends Extension
 
         /** @var ?RedirectionSuperLink $redirect */
         $redirect = RedirectionSuperLink::get()->filter($filter)->first();
-        if (!empty($redirect))
+        if (!empty($redirect) && $redirect->getAbsoluteURL())
         {
             $response = HTTPResponse::create()
                 ->redirect($redirect->getAbsoluteURL() ?? '', $redirect->getResponseCode());
