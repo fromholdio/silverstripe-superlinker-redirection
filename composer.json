@@ -16,7 +16,8 @@
         "silverstripe/cms": "~5.0",
         "fromholdio/silverstripe-superlinker": "3.x-dev",
         "fromholdio/silverstripe-relativeurlfield": "dev-master",
-        "fromholdio/silverstripe-hidden-pages": "^1.1.0"
+        "fromholdio/silverstripe-hidden-pages": "^1.1.0",
+        "stevie-mayhew/hasoneedit": "^2.2"
     },
     "autoload": {
         "psr-4": {
