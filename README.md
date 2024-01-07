@@ -1,14 +1,12 @@
 # silverstripe-superlinker-redirection
 
-Use master/v1.x (compatible with SS 4 & 5).
-
-This branch is under active development. It **will** change and break, likely including namespaces.
+Requires Silverstripe 5+.
 
 Replace for OOTB Silverstripe Redirector Page, using a SuperLink target to select a much wider range of target types (than simple internal/external)
 
 ## Requirements
 
-* [silverstripe-framework](https://github.com/silverstripe/silverstripe-framework) ^4 or ^5 (untested with 4)
+* [silverstripe-framework](https://github.com/silverstripe/silverstripe-framework) ^5
 
 ## Installation
 

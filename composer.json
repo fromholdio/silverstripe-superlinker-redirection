@@ -14,8 +14,8 @@
     }],
     "require": {
         "silverstripe/cms": "~5.0",
-        "fromholdio/silverstripe-superlinker": "3.x-dev",
-        "fromholdio/silverstripe-relativeurlfield": "dev-master",
+        "fromholdio/silverstripe-superlinker": "^3.0.0",
+        "fromholdio/silverstripe-relativeurlfield": "^1.0.0",
         "fromholdio/silverstripe-hidden-pages": "^1.1.0",
         "stevie-mayhew/hasoneedit": "^2.2"
     },
