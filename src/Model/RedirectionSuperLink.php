@@ -80,7 +80,7 @@ class RedirectionSuperLink extends SuperLink
 
     private static $searchable_fields = [
         'RedirectionFromRelativeURL',
-        'ResponseCode'
+        'RedirectionResponseCode'
     ];
 
     public function getFormattedOriginURL(): DBHTMLText
