@@ -39,7 +39,7 @@ class SuperLinkerMisdirectionUpgradeTask extends BuildTask
         $tableExists = DB::query($query)->value();
         if ($tableExists != null) {
             $records = DB::query("SELECT * FROM LinkMapping WHERE LinkMapping.LinkType = 'Regular Expression'");
-            if ($records) {
+            if ($records && $records->numRecords() > 0) {
                 $this->log("");
                 $this->log("!!! ATTENTION: Regular Expression redirects are not migrated !!!");
                 $this->log("Please configure these as htaccess/nginx redirects on your server manually.");
