@@ -14,6 +14,7 @@ class RedirectionPage extends Page
     private static $table_name = 'RedirectionPage';
     private static $singular_name = 'Redirection Page';
     private static $plural_name = 'Redirection Pages';
+    private static $description = 'Redirect to a different target';
     private static $icon_class = 'font-icon-p-redirect';
 
     private static $show_stage_link = false;
