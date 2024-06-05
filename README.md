@@ -1,6 +1,6 @@
 # silverstripe-superlinker-redirection
 
-Requires Silverstripe 5+.
+Requires Silverstripe 5.2+.
 
 Replace for OOTB Silverstripe Redirector Page, using a SuperLink target to select a much wider range of target types (than simple internal/external)
 

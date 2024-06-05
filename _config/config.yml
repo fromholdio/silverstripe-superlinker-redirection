@@ -2,8 +2,11 @@
 Name: fromholdio-superlinker-redirection
 ---
 
+SilverStripe\CMS\Model\SiteTree:
+  hide_pagetypes:
+    - SilverStripe\CMS\Model\RedirectorPage
+
 SilverStripe\CMS\Model\RedirectorPage:
-  hide_ancestor: SilverStripe\CMS\Model\RedirectorPage
   extensions:
     fioHiddenPage: Fromholdio\HiddenPages\Extensions\HiddenPageExtension
 
