@@ -222,6 +222,8 @@ class RedirectionSuperLink extends SuperLink
         else {
             $fields = parent::getCMSLinkFields($fieldPrefix);
 
+            $fromURLField->setIsCleanValueEnabled(false);
+
             $codeField = OptionsetField::create(
                 $fieldPrefix . 'RedirectionResponseCode',
                 $this->fieldLabel('RedirectionResponseCode'),
