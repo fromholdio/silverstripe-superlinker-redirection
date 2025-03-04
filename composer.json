@@ -15,7 +15,7 @@
     "require": {
         "silverstripe/cms": "^5.2",
         "fromholdio/silverstripe-superlinker": "^3",
-        "fromholdio/silverstripe-relativeurlfield": "^1",
+        "fromholdio/silverstripe-relativeurlfield": "^1.2",
         "fromholdio/silverstripe-hidden-pages": "^2",
         "stevie-mayhew/hasoneedit": "^2.2"
     },
