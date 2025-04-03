@@ -53,7 +53,7 @@ class RedirectionPage extends Page
     public function Link($action = null): ?string
     {
         $link = $this->getTargetSuperLink()?->getURL() ?? $this->regularLink($action);
-        $this->extend('updateLink', $link, $action);
+        $this->extend('updateLink', $link, $action, $this->regularLink());
         return $link;
     }
 
