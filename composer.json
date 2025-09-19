@@ -14,8 +14,8 @@
     }],
     "require": {
         "silverstripe/cms": "^5.2",
-        "fromholdio/silverstripe-superlinker": "^3",
-        "fromholdio/silverstripe-relativeurlfield": "^2.0",
+        "fromholdio/silverstripe-superlinker": "^4.0.0",
+        "fromholdio/silverstripe-relativeurlfield": "^2.0.0",
         "fromholdio/silverstripe-hidden-pages": "^2.1.0",
         "fromholdio/silverstripe-hasoneedit": "^3.0.1"
     },
