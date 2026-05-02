@@ -29,7 +29,7 @@ class AssetRedirectionHandler extends Extension
         }
 
         // We are unable to progress if there is no current Controller
-        if (!Controller::has_curr()) {
+        if (is_null(Controller::curr())) {
             return;
         }
 

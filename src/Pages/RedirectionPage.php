@@ -4,7 +4,7 @@ namespace Fromholdio\SuperLinkerRedirection\Pages;
 
 use Fromholdio\SuperLinkerRedirection\Model\RedirectionSuperLink;
 use Page;
-use SGN\HasOneEdit\HasOneEdit;
+use Fromholdio\HasOneEdit\HasOneEdit;
 use SilverStripe\Control\Director;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\HeaderField;
@@ -53,7 +53,8 @@ class RedirectionPage extends Page
     public function Link($action = null): ?string
     {
         $link = $this->getTargetSuperLink()?->getURL() ?? $this->regularLink($action);
-        $this->extend('updateLink', $link, $action, $this->regularLink());
+        $regularLink = $this->regularLink();
+        $this->extend('updateLink', $link, $action, $regularLink);
         return $link;
     }
 

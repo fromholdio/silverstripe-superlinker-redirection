@@ -4,5 +4,5 @@ Only:
   moduleexists: innoweb/silverstripe-page-icons
 ---
 Fromholdio\SuperLinkerRedirection\Pages\RedirectionPage:
-  icon: 'innoweb/silverstripe-page-icons: client/icons/redirect.svg'
-  icon_class: false
+  cms_icon: 'innoweb/silverstripe-page-icons: client/icons/redirect.svg'
+  cms_icon_class: false

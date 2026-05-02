@@ -3,12 +3,12 @@
 namespace Fromholdio\SuperLinkerRedirection\Extensions;
 
 use Fromholdio\SuperLinkerRedirection\Model\RedirectionSuperLink;
-use SilverStripe\CMS\Model\SiteTreeExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 
-class SiteTreeRedirectionExtension extends SiteTreeExtension
+class SiteTreeRedirectionExtension extends Extension
 {
     private static $redirections_tab_path = null;
 
