@@ -14,6 +14,7 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\OptionsetField;
 use SilverStripe\Forms\ReadonlyField;
+use SilverStripe\Core\Validation\ValidationResult;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 
@@ -112,6 +113,52 @@ class RedirectionSuperLink extends SuperLink
     public function isConfiguredByRedirectionPage(): bool
     {
         return $this->getComponent('RedirectionPage')?->exists();
+    }
+
+    public function validate(): ValidationResult
+    {
+        $result = parent::validate();
+        $origin = $this->getNormalisedStandaloneOriginURL();
+        if (is_null($origin)) {
+            return $result;
+        }
+
+        /** @var self $redirection */
+        foreach (self::get() as $redirection) {
+            if ((int) $redirection->ID === (int) $this->ID) {
+                continue;
+            }
+            if ($redirection->getNormalisedStandaloneOriginURL() !== $origin) {
+                continue;
+            }
+
+            $result->addFieldError(
+                'RedirectionFromRelativeURL',
+                'A redirection with this Origin URL already exists.'
+            );
+            break;
+        }
+
+        return $result;
+    }
+
+    protected function getNormalisedStandaloneOriginURL(): ?string
+    {
+        if ($this->isConfiguredByRedirectionPage()) {
+            return null;
+        }
+
+        return $this->normaliseOriginURL($this->getField('RedirectionFromRelativeURL'));
+    }
+
+    protected function normaliseOriginURL(?string $url): ?string
+    {
+        $url = trim((string) $url);
+        if ($url === '') {
+            return null;
+        }
+
+        return ltrim($url, '/');
     }
 
     public function getResponseCode(): int
