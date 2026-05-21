@@ -84,6 +84,10 @@ class RedirectionSuperLink extends SuperLink
         'RedirectionResponseCode'
     ];
 
+    private static $indexes = [
+        'RedirectionFromRelativeURL' => true,
+    ];
+
     public function getFormattedOriginURL(): DBHTMLText
     {
         $url = $this->getOriginURL();
