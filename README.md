@@ -99,6 +99,22 @@ Fromholdio\SuperLinkerRedirection\Pages\RedirectionPage:
   hide_from_cms_menu: false
 ```
 
+### Force redirections over live pages
+
+By default a `RedirectionSuperLink` fires only as a **404 fallback**: if a published page already exists at the redirection's origin URL, that page is served and the redirect never runs.
+
+Set `do_force_redirections` to make redirections take precedence over the site tree — a matching redirect then fires **even when a live page exists** at the URL, checked in `onBeforeInit` before the page controller renders (comparable to Misdirection's enforce mode):
+
+```yaml
+Fromholdio\SuperLinkerRedirection\Model\RedirectionSuperLink:
+  do_force_redirections: true
+```
+
+- Default is `false` — the original 404-fallback behaviour is unchanged.
+- Reserved paths in `disallowed_redirect_origin_url_paths` (`/admin`, `/dev`, …) are never redirected.
+- Site/host scoping still applies: the check runs in controller context and invokes the `updateRedirectionsFilter` extension hook, so any multisite `SiteID` narrowing works the same as in fallback mode.
+- Force mode queries `RedirectionFromRelativeURL` on every request; it's indexed on the model — run `dev/build` after upgrading.
+
 ## Usage Examples
 
 ### Example 1: Redirect Old Page to New Page
