@@ -29,6 +29,16 @@ class RedirectionSuperLink extends SuperLink
         'RedirectionResponseCode' => 'Int'
     ];
 
+    /**
+     * When false (default), redirections only apply as a 404 fallback — a Live page at the
+     * same URL takes precedence and the redirect never fires.
+     *
+     * When true, a matching redirection is applied even when a Live page exists at the URL
+     * (checked in RedirectionHandler::onBeforeInit, before the page controller initialises),
+     * so redirections take precedence over the site tree.
+     */
+    private static $do_force_redirections = false;
+
     private static $belongs_to = [
         'RedirectionPage' => RedirectionPage::class . '.RedirectionSuperLink'
     ];
